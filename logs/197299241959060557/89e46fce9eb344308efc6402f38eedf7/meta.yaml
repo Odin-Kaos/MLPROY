@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/197299241959060557/89e46fce9eb344308efc6402f38eedf7/artifacts
+end_time: 1767469176269
+entry_point_name: ''
+experiment_id: '197299241959060557'
+lifecycle_stage: active
+run_id: 89e46fce9eb344308efc6402f38eedf7
+run_name: unequaled-ray-827
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767469176043
+status: 3
+tags: []
+user_id: alumno

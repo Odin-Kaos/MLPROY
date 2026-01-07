@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/370250419910217333/944a4864e7dd4c4e9f05f2faabbe7309/artifacts
+end_time: 1767469524785
+entry_point_name: ''
+experiment_id: '370250419910217333'
+lifecycle_stage: active
+run_id: 944a4864e7dd4c4e9f05f2faabbe7309
+run_name: victorious-goose-752
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767469524645
+status: 3
+tags: []
+user_id: alumno

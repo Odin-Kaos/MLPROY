@@ -1,0 +1,10 @@
+artifact_location: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/128470993355246648/models/m-ce5cfec2077648c7917202e87b3e7778/artifacts
+creation_timestamp: 1767469919525
+experiment_id: '128470993355246648'
+last_updated_timestamp: 1767469924053
+model_id: m-ce5cfec2077648c7917202e87b3e7778
+model_type: null
+name: model
+source_run_id: a11166c06df8435bba6c59017561dcac
+status: 2
+status_message: null

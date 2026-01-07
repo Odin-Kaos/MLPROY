@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/628286781017293971/13bb28a9f3db4d32bdf2716387c3cfd4/artifacts
+end_time: 1767469751069
+entry_point_name: ''
+experiment_id: '628286781017293971'
+lifecycle_stage: active
+run_id: 13bb28a9f3db4d32bdf2716387c3cfd4
+run_name: upset-bird-869
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767469750363
+status: 3
+tags: []
+user_id: alumno

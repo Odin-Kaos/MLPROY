@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/435621182784824694/04c81de8b9104e0ea0fb9e46b1118bc7/artifacts
+end_time: 1767469891087
+entry_point_name: ''
+experiment_id: '435621182784824694'
+lifecycle_stage: active
+run_id: 04c81de8b9104e0ea0fb9e46b1118bc7
+run_name: tasteful-wren-391
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767469890650
+status: 3
+tags: []
+user_id: alumno

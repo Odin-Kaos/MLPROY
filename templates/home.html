@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>MLOps Lab1</title>
+  </head>
+
+  <body>
+    <h1>MLOps Lab1 API</h1>
+
+    <form action="/predict" method="post" onsubmit="return buildVector()">
+      <h3>Select Symptoms</h3>
+
+      <div>
+        <label><input type="checkbox" name="symptom" value="Breathing Problem"> Breathing Problem</label><br>
+        <label><input type="checkbox" name="symptom" value="Fever"> Fever</label><br>
+        <label><input type="checkbox" name="symptom" value="Dry Cough"> Dry Cough</label><br>
+        <label><input type="checkbox" name="symptom" value="Sore throat"> Sore throat</label><br>
+        <label><input type="checkbox" name="symptom" value="Running Nose"> Running Nose</label><br>
+        <label><input type="checkbox" name="symptom" value="Asthma"> Asthma</label><br>
+        <label><input type="checkbox" name="symptom" value="Chronic Lung Disease"> Chronic Lung Disease</label><br>
+        <label><input type="checkbox" name="symptom" value="Headache"> Headache</label><br>
+        <label><input type="checkbox" name="symptom" value="Heart Disease"> Heart Disease</label><br>
+        <label><input type="checkbox" name="symptom" value="Diabetes"> Diabetes</label><br>
+        <label><input type="checkbox" name="symptom" value="Hyper Tension"> Hyper Tension</label><br>
+        <label><input type="checkbox" name="symptom" value="Fatigue"> Fatigue</label><br>
+        <label><input type="checkbox" name="symptom" value="Gastrointestinal"> Gastrointestinal</label><br>
+        <label><input type="checkbox" name="symptom" value="Abroad travel"> Abroad travel</label><br>
+        <label><input type="checkbox" name="symptom" value="Contact with COVID Patient"> Contact with COVID Patient</label><br>
+        <label><input type="checkbox" name="symptom" value="Attended Large Gathering"> Attended Large Gathering</label><br>
+        <label><input type="checkbox" name="symptom" value="Visited Public Exposed Places"> Visited Public Exposed Places</label><br>
+        <label><input type="checkbox" name="symptom" value="Family working in Public Exposed Places"> Family working in Public Exposed Places</label><br>
+        <label><input type="checkbox" name="symptom" value="Wearing Masks"> Wearing Masks</label><br>
+        <label><input type="checkbox" name="symptom" value="Sanitization from Market"> Sanitization from Market</label><br>
+      </div>
+
+      <!-- Hidden field that will contain the final vector -->
+      <input type="hidden" id="vect" name="vect" />
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <script>
+      function buildVector() {
+        const checkboxes = document.querySelectorAll('input[name="symptom"]');
+        const vector = [];
+
+        checkboxes.forEach(cb => {
+          vector.push(cb.checked ? 1 : 0);
+        });
+
+        document.getElementById("vect").value = vector.join(",");
+        return true;
+      }
+    </script>
+
+    <hr />
+    <p>Use <a href="/docs">/docs</a> to test the API as well.</p>
+  </body>
+</html>
