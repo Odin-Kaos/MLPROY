@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/735296509145954396/f80f6bc11eb04dfbb361dd9307e94033/artifacts
+end_time: 1767806175619
+entry_point_name: ''
+experiment_id: '735296509145954396'
+lifecycle_stage: active
+run_id: f80f6bc11eb04dfbb361dd9307e94033
+run_name: nimble-pug-118
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767806170685
+status: 3
+tags: []
+user_id: alumno

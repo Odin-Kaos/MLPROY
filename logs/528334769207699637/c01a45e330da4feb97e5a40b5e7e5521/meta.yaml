@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/528334769207699637/c01a45e330da4feb97e5a40b5e7e5521/artifacts
+end_time: 1767873801271
+entry_point_name: ''
+experiment_id: '528334769207699637'
+lifecycle_stage: active
+run_id: c01a45e330da4feb97e5a40b5e7e5521
+run_name: luminous-dolphin-589
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767873791094
+status: 3
+tags: []
+user_id: alumno

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/473507781700060957/65a4d5654de140b58c427d65ae82f261/artifacts
+end_time: 1767873978314
+entry_point_name: ''
+experiment_id: '473507781700060957'
+lifecycle_stage: active
+run_id: 65a4d5654de140b58c427d65ae82f261
+run_name: skittish-dove-890
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767873977293
+status: 3
+tags: []
+user_id: alumno

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/604976336428676820/3fa57d430daf4b4aa84834ad52e72e27/artifacts
+end_time: 1767874951141
+entry_point_name: ''
+experiment_id: '604976336428676820'
+lifecycle_stage: active
+run_id: 3fa57d430daf4b4aa84834ad52e72e27
+run_name: efficient-bird-652
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874947964
+status: 3
+tags: []
+user_id: alumno

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/459895634110855323/3561751de4d14720ae57f746f6fa4bfb/artifacts
+end_time: 1767874038009
+entry_point_name: ''
+experiment_id: '459895634110855323'
+lifecycle_stage: active
+run_id: 3561751de4d14720ae57f746f6fa4bfb
+run_name: '0'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874037932
+status: 3
+tags: []
+user_id: alumno

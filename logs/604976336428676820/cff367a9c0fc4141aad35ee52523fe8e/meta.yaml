@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/604976336428676820/cff367a9c0fc4141aad35ee52523fe8e/artifacts
+end_time: 1767874961945
+entry_point_name: ''
+experiment_id: '604976336428676820'
+lifecycle_stage: active
+run_id: cff367a9c0fc4141aad35ee52523fe8e
+run_name: amusing-smelt-765
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874956005
+status: 3
+tags: []
+user_id: alumno

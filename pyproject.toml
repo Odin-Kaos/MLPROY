@@ -1,0 +1,24 @@
+[project]
+name = "fproy"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "black>=25.12.0",
+    "lint>=1.2.1",
+    "mlflow>=3.8.1",
+    "numpy>=2.4.0",
+    "optuna>=4.6.0",
+    "optuna-integration>=4.6.0",
+    "pandas>=2.3.3",
+    "path>=17.1.1",
+    "pathlib>=1.0.1",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "scikit-learn>=1.8.0",
+    "xgboost>=3.1.2",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

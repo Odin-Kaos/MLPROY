@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/459895634110855323/0fff3755335f4a1782f3151f6190bcab/artifacts
+end_time: 1767874047776
+entry_point_name: ''
+experiment_id: '459895634110855323'
+lifecycle_stage: active
+run_id: 0fff3755335f4a1782f3151f6190bcab
+run_name: salty-fawn-870
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874041312
+status: 3
+tags: []
+user_id: alumno

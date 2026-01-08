@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/604976336428676820/9e3be77e98104ec2b227652c18688bd4/artifacts
+end_time: 1767874947859
+entry_point_name: ''
+experiment_id: '604976336428676820'
+lifecycle_stage: active
+run_id: 9e3be77e98104ec2b227652c18688bd4
+run_name: big-goose-157
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874942283
+status: 3
+tags: []
+user_id: alumno

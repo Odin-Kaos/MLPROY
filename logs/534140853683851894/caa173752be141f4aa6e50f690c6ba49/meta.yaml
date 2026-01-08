@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/534140853683851894/caa173752be141f4aa6e50f690c6ba49/artifacts
+end_time: 1767874185316
+entry_point_name: ''
+experiment_id: '534140853683851894'
+lifecycle_stage: active
+run_id: caa173752be141f4aa6e50f690c6ba49
+run_name: handsome-fawn-311
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874184213
+status: 3
+tags: []
+user_id: alumno

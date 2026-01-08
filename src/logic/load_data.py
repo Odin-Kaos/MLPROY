@@ -2,6 +2,7 @@ import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 
+
 def loadCSV():
     data_path = Path("/app/data")
     ROOT = Path(__file__).resolve().parents[2]
@@ -12,9 +13,7 @@ def loadCSV():
     X = df.iloc[:, :-1]
     y = df.iloc[:, -1]
 
-    X, X_test, y, y_test = train_test_split(
-        X, y, test_size=0.3, random_state=42
-    )
+    X, X_test, y, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
     X_train, X_val, y_train, y_val = train_test_split(
         X, y, test_size=0.3, random_state=42
     )

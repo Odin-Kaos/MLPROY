@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/459895634110855323/0de3aad190ed4ebb835be93ee2bbb904/artifacts
+end_time: 1767874041199
+entry_point_name: ''
+experiment_id: '459895634110855323'
+lifecycle_stage: active
+run_id: 0de3aad190ed4ebb835be93ee2bbb904
+run_name: flawless-seal-907
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874038018
+status: 3
+tags: []
+user_id: alumno

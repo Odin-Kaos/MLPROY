@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/604976336428676820/5258981ba7014b44a82a3a17709a7a93/artifacts
+end_time: 1767874955878
+entry_point_name: ''
+experiment_id: '604976336428676820'
+lifecycle_stage: active
+run_id: 5258981ba7014b44a82a3a17709a7a93
+run_name: angry-penguin-757
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874951232
+status: 3
+tags: []
+user_id: alumno

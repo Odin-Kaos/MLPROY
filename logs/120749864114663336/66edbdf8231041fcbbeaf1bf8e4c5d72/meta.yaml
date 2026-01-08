@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/120749864114663336/66edbdf8231041fcbbeaf1bf8e4c5d72/artifacts
+end_time: 1767874753555
+entry_point_name: ''
+experiment_id: '120749864114663336'
+lifecycle_stage: active
+run_id: 66edbdf8231041fcbbeaf1bf8e4c5d72
+run_name: whimsical-hen-933
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874748191
+status: 3
+tags: []
+user_id: alumno

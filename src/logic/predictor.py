@@ -6,7 +6,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 classifier = xgb.XGBRegressor()
-classifier.load_model(ROOT/"models"/"model.ubj")
+classifier.load_model(ROOT / "models" / "model.ubj")
+
 
 def predict_class(vect: np.ndarray) -> bool:
     vect = np.array(vect, dtype=float).reshape(1, -1)

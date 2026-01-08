@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/534140853683851894/e1d3dc16da87452d8bdb0fbd776d53d7/artifacts
+end_time: 1767874195169
+entry_point_name: ''
+experiment_id: '534140853683851894'
+lifecycle_stage: active
+run_id: e1d3dc16da87452d8bdb0fbd776d53d7
+run_name: bald-mole-414
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874185427
+status: 3
+tags: []
+user_id: alumno

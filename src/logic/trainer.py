@@ -7,8 +7,7 @@ from sklearn.metrics import mean_squared_error
 import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
-import shap
-from load_data import loadCSV
+from logic.load_data import loadCSV
 
 ROOT = Path(__file__).resolve().parents[2]
 tracking_dir = ROOT / "logs"
@@ -20,9 +19,9 @@ dvalid = xgb.DMatrix(X_val, label=y_val)
 dtest = xgb.DMatrix(X_test, label=y_test)
 
 mlflow_callback = MLflowCallback(
-    tracking_uri=f"file:{tracking_dir.as_posix()}",
-    metric_name="rmse"
-    )
+    tracking_uri=f"file:{tracking_dir.as_posix()}", metric_name="rmse"
+)
+
 
 def objective(trial):
     params = {
@@ -42,7 +41,7 @@ def objective(trial):
             num_boost_round=500,
             evals=[(dvalid, "valid")],
             early_stopping_rounds=50,
-            verbose_eval=False
+            verbose_eval=False,
         )
 
         preds = model.predict(dvalid)
@@ -52,6 +51,7 @@ def objective(trial):
         mlflow.log_params(params)
 
         return rmse
+
 
 study = optuna.create_study(direction="minimize")
 study.optimize(objective, n_trials=5, callbacks=[mlflow_callback])
@@ -71,22 +71,15 @@ with mlflow.start_run(run_name="best_model"):
         dtrain,
         num_boost_round=500,
         evals=[(dvalid, "valid")],
-        early_stopping_rounds=50
+        early_stopping_rounds=50,
     )
 
     mlflow.xgboost.log_model(best_model, artifact_path="model")
 
-best_model.save_model(ROOT/"models"/"model.ubj")
+best_model.save_model(ROOT / "models" / "model.ubj")
 
 fig, ax = plt.subplots(figsize=(8, 6))
 xgb.plot_importance(best_model, ax=ax)
 plt.tight_layout()
-fig.savefig(tracking_dir/"imgs/feature_importance.png")
-mlflow.log_artifact(tracking_dir/"imgs/feature_importance.png")
-
-explainer = shap.TreeExplainer(best_model)
-shap_values = explainer.shap_values(X_train)
-shap.summary_plot(shap_values, X_train, show=False)
-plt.tight_layout()
-plt.savefig(tracking_dir/"imgs/shap_summary.png")
-mlflow.log_artifact(tracking_dir/"imgs/shap_summary.png")
+fig.savefig(tracking_dir / "imgs/feature_importance.png")
+mlflow.log_artifact(tracking_dir / "imgs/feature_importance.png")

@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/528334769207699637/42543187ee3743fe9fa173e364121c02/artifacts
+end_time: 1767873812315
+entry_point_name: ''
+experiment_id: '528334769207699637'
+lifecycle_stage: active
+run_id: 42543187ee3743fe9fa173e364121c02
+run_name: rogue-rat-295
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767873811332
+status: 3
+tags: []
+user_id: alumno

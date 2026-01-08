@@ -1,0 +1,22 @@
+artifact_path: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/735296509145954396/models/m-7b3477417a3c46bd8337c816ed3ea273/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.13.7
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.core.Booster
+    model_format: ubj
+    xgb_version: 3.1.2
+mlflow_version: 3.8.1
+model_id: m-7b3477417a3c46bd8337c816ed3ea273
+model_size_bytes: 562700
+model_uuid: m-7b3477417a3c46bd8337c816ed3ea273
+prompts: null
+run_id: 210ccfe5a644457da3da98d633cc4f4b
+utc_time_created: '2026-01-07 17:16:27.393946'

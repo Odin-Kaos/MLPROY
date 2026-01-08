@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/968188844141870472/60635b6867544c8e8cb99e74bbef9154/artifacts
+end_time: 1767874843354
+entry_point_name: ''
+experiment_id: '968188844141870472'
+lifecycle_stage: active
+run_id: 60635b6867544c8e8cb99e74bbef9154
+run_name: intrigued-roo-547
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874837424
+status: 3
+tags: []
+user_id: alumno

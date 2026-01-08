@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/534140853683851894/e2ecd593a66b4b93bf219bba12543086/artifacts
+end_time: 1767874182322
+entry_point_name: ''
+experiment_id: '534140853683851894'
+lifecycle_stage: active
+run_id: e2ecd593a66b4b93bf219bba12543086
+run_name: amusing-cow-685
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874176986
+status: 3
+tags: []
+user_id: alumno

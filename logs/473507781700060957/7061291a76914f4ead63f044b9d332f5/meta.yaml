@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/473507781700060957/7061291a76914f4ead63f044b9d332f5/artifacts
+end_time: 1767873967486
+entry_point_name: ''
+experiment_id: '473507781700060957'
+lifecycle_stage: active
+run_id: 7061291a76914f4ead63f044b9d332f5
+run_name: spiffy-carp-571
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767873964500
+status: 3
+tags: []
+user_id: alumno

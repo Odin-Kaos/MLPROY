@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/459895634110855323/b209906a45fb4be9a91a07219b5fb5e5/artifacts
+end_time: 1767874056671
+entry_point_name: ''
+experiment_id: '459895634110855323'
+lifecycle_stage: active
+run_id: b209906a45fb4be9a91a07219b5fb5e5
+run_name: powerful-ram-645
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874047917
+status: 3
+tags: []
+user_id: alumno

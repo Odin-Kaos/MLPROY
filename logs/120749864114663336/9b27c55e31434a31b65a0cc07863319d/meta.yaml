@@ -1,0 +1,14 @@
+artifact_uri: file:///home/alumno/Desktop/datos/MLOPS/FProy/logs/120749864114663336/9b27c55e31434a31b65a0cc07863319d/artifacts
+end_time: 1767874732485
+entry_point_name: ''
+experiment_id: '120749864114663336'
+lifecycle_stage: active
+run_id: 9b27c55e31434a31b65a0cc07863319d
+run_name: learned-fly-640
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767874726191
+status: 3
+tags: []
+user_id: alumno
