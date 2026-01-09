@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+src/__init__.py
+src/training_script.py
+src/api/__init__.py
+src/api/api.py
+src/fproy.egg-info/PKG-INFO
+src/fproy.egg-info/SOURCES.txt
+src/fproy.egg-info/dependency_links.txt
+src/fproy.egg-info/requires.txt
+src/fproy.egg-info/top_level.txt
+src/logic/__init__.py
+src/logic/load_data.py
+src/logic/predictor.py
+src/logic/trainer.py
+src/tests/test_logic.py

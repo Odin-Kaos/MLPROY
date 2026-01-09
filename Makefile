@@ -1,28 +1,52 @@
-.PHONY: install lint format test refactor all run-api run-cli
+.PHONY: install install-notorch install-withtorch lint format test refactor all run-api run-cli
 
 VENV := .venv
 PY := $(VENV)/bin/python
-UV := uv
+PIP := $(VENV)/bin/pip
+UVICORN := $(VENV)/bin/uvicorn
 
-install:
-	# Create venv and sync dependencies from uv.lock / pyproject.toml
-	pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-	$(UV) venv $(VENV)
-	$(UV) sync
-	pip install -e .
+# -------------------------
+# Installation targets
+# -------------------------
+
+install-notorch:
+	python3 -m venv $(VENV)
+	$(PIP) install --upgrade pip
+	$(PIP) install -e .[notorch]
+
+install-withtorch:
+	python3 -m venv $(VENV)
+	$(PIP) install --upgrade pip
+	$(PIP) install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+	$(PIP) install -e .[withtorch]
+
+# Default install
+install: install-withtorch
+
+# -------------------------
+# Quality
+# -------------------------
 
 lint:
-	$(UV) run pylint src || true
+	$(PY) -m pylint src || true
 
 format:
-	$(UV) run black src
+	$(PY) -m black src tests || true
 
 test:
-	$(UV) run pytest -v --cov=src
+	$(PY) -m pytest -v --cov=src
 
 refactor: format lint
 
-all: install format lint test
+# -------------------------
+# Run
+# -------------------------
 
 run-api:
-	uvicorn src.api.api:app --reload
+	$(UVICORN) src.api.api:app --reload
+
+run-cli:
+	$(PY) -m src.cli.cli
+
+all: install-withtorch format lint test
+
