@@ -11,6 +11,7 @@ dtrain = None
 dvalid = None
 y_val = None
 
+mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "mlruns"))
 
 def objective(trial):
     """Optuna objective function for XGBoost regression."""

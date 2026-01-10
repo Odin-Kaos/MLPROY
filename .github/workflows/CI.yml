@@ -1,0 +1,88 @@
+name: CI-CD
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Job-level environment variables
+    env:
+      MLFLOW_DIR: ${{ github.workspace }}/mlruns
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Install dependencies
+        run: make install
+
+      - name: Format
+        run: make format
+
+      - name: Lint
+        run: make lint
+
+      - name: Run tests
+        run: make test
+
+      # -----------------------------
+      # TRAINING STAGE
+      # -----------------------------
+      - name: Train model
+        env:
+          MLFLOW_TRACKING_URI: ${{ env.MLFLOW_DIR }}
+        run: |
+          echo "Training model..."
+          make train
+
+      # -----------------------------
+      # SERIALIZATION STAGE
+      # -----------------------------
+      - name: Serialize model
+        env:
+          MLFLOW_TRACKING_URI: ${{ env.MLFLOW_DIR }}
+        run: |
+          echo "Serializing model..."
+          make serialize
+
+      # -----------------------------
+      # BUILD DOCKER IMAGE
+      # -----------------------------
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository }}:latest
+
+      # -----------------------------
+      # DEPLOY (Render, Fly.io, etc.)
+      # -----------------------------
+      - name: Deploy service
+        run: |
+          echo "Deploying service..."
+          # Example: curl -X POST https://api.render.com/deploy...
+          # Replace with your actual deployment command
+
+      # -----------------------------
+      # CLEAN MLflow directory
+      # -----------------------------
+      - name: Cleanup MLflow directory
+        run: rm -rf ${{ env.MLFLOW_DIR }}

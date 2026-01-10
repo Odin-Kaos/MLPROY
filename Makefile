@@ -37,6 +37,13 @@ test:
 	$(PY) -m pytest -v --cov=src
 
 refactor: format lint
+# -------------------------
+# Training & Serialization
+# -------------------------
+train:
+	$(PY) src/logic/trainer.py
+serialize:
+	$(PY) src/logic/serialize.py
 
 # -------------------------
 # Run
