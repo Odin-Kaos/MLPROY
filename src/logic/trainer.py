@@ -5,6 +5,7 @@ import os
 import mlflow
 import xgboost as xgb
 from sklearn.metrics import mean_squared_error
+import optuna
 
 # These globals are injected / monkeypatched by training_script or tests
 dtrain = None
