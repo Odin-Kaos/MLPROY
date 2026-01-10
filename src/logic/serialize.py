@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 import mlflow
 import xgboost as xgb
-from load_data import loadCSV
+from load_data import load_csv
 
 
 # -----------------------------
@@ -25,7 +25,7 @@ mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", f"file:{tracking_d
 # -----------------------------
 # Load data
 # -----------------------------
-X_train, y_train, X_val, y_val, X_test, y_test = loadCSV()
+X_train, y_train, X_val, y_val, X_test, y_test = load_csv()
 
 dtrain = xgb.DMatrix(X_train, label=y_train)
 dvalid = xgb.DMatrix(X_val, label=y_val)

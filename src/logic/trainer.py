@@ -7,14 +7,14 @@ from sklearn.metrics import mean_squared_error
 import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
-from load_data import loadCSV
+from load_data import load_csv
 
 ROOT = Path(__file__).resolve().parents[2]
 tracking_dir = ROOT / "logs"
 
 mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", f"file:{tracking_dir.as_posix()}"))
 
-X_train, y_train, X_val, y_val, X_test, y_test = loadCSV()
+X_train, y_train, X_val, y_val, X_test, y_test = load_csv()
 
 dtrain = xgb.DMatrix(X_train, label=y_train)
 dvalid = xgb.DMatrix(X_val, label=y_val)
