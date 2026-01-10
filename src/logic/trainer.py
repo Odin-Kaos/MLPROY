@@ -44,3 +44,8 @@ def objective(trial):
 
         return rmse
 
+study = optuna.create_study(direction="minimize")
+study.optimize(objective, n_trials=5, callbacks=[mlflow_callback])
+
+print("Best params:", study.best_params)
+print("Best RMSE:", study.best_value)
