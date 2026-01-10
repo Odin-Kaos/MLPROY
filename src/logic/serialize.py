@@ -1,73 +1,103 @@
 """
-Serialization script: load the best model from MLflow and save it locally.
+Serialization script: load best parameters from MLflow logs in /logs,
+retrain the model using those parameters, and save it into /models/model.ubj.
 """
 
 import os
 from pathlib import Path
 import mlflow
 import xgboost as xgb
+from load_data import loadCSV
 
-mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "mlruns"))
 
-def get_best_run(experiment_id: str):
-    """
-    Returns the MLflow run with the lowest RMSE.
-    """
+# -----------------------------
+# Paths and MLflow setup
+# -----------------------------
+ROOT = Path(__file__).resolve().parents[2]
+tracking_dir = ROOT / "logs"
+models_dir = ROOT / "models"
+models_dir.mkdir(exist_ok=True)
+
+# Use environment variable if provided (CI/CD), otherwise default to /logs
+mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", f"file:{tracking_dir.as_posix()}"))
+
+
+# -----------------------------
+# Load data
+# -----------------------------
+X_train, y_train, X_val, y_val, X_test, y_test = loadCSV()
+
+dtrain = xgb.DMatrix(X_train, label=y_train)
+dvalid = xgb.DMatrix(X_val, label=y_val)
+
+
+# -----------------------------
+# Helper: find best run
+# -----------------------------
+def get_best_run():
     client = mlflow.tracking.MlflowClient()
 
+    # Default experiment is usually "0"
+    experiment = client.get_experiment_by_name("Default")
+    if experiment is None:
+        raise RuntimeError("MLflow experiment 'Default' not found in /logs")
+
     runs = client.search_runs(
-        experiment_ids=[experiment_id],
-        order_by=["metrics.rmse ASC"],  # lowest RMSE first
+        experiment_ids=[experiment.experiment_id],
+        order_by=["metrics.rmse ASC"],
         max_results=1,
     )
 
     if not runs:
-        raise RuntimeError("No MLflow runs found. Train the model first.")
+        raise RuntimeError("No MLflow runs found in /logs. Train the model first.")
 
     return runs[0]
 
 
-def load_best_model(run):
-    """
-    Loads the XGBoost model artifact from the best MLflow run.
-    """
-    artifact_uri = run.info.artifact_uri
-    model_path = f"{artifact_uri}/model"
-
-    # MLflow automatically detects XGBoost format
-    model = mlflow.xgboost.load_model(model_path)
-    return model
-
-
-def save_model_locally(model):
-    """
-    Saves the model to models/model.ubj.
-    """
-    root = Path(__file__).resolve().parents[2]
-    output_path = root / "models" / "model.ubj"
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    model.save_model(output_path)
-    print(f"Model saved to: {output_path}")
-
-
+# -----------------------------
+# Main logic
+# -----------------------------
 def main():
-    # Configure MLflow tracking URI
-    mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "mlruns"))
+    print("Searching for best run in MLflow logs...")
 
-    # Get default experiment (ID = "0")
-    client = mlflow.tracking.MlflowClient()
-    experiment = client.get_experiment_by_name("Default")
+    best_run = get_best_run()
+    best_params = best_run.data.params
 
-    if experiment is None:
-        raise RuntimeError("MLflow experiment 'Default' not found.")
+    print("Best run ID:", best_run.info.run_id)
+    print("Best RMSE:", best_run.data.metrics.get("rmse"))
+    print("Best parameters:", best_params)
 
-    best_run = get_best_run(experiment.experiment_id)
-    print(f"Best run ID: {best_run.info.run_id}")
-    print(f"Best RMSE: {best_run.data.metrics.get('rmse')}")
+    # Convert params from strings to correct types
+    final_params = {
+        "objective": "reg:squarederror",
+        "eval_metric": "rmse",
+        "max_depth": int(best_params["max_depth"]),
+        "eta": float(best_params["eta"]),
+        "subsample": float(best_params["subsample"]),
+        "colsample_bytree": float(best_params["colsample_bytree"]),
+        "lambda": float(best_params["lambda"]),
+        "alpha": float(best_params["alpha"]),
+    }
 
-    model = load_best_model(best_run)
-    save_model_locally(model)
+    print("Retraining model with best parameters...")
+
+    with mlflow.start_run(run_name="serialization_retrain"):
+        model = xgb.train(
+            final_params,
+            dtrain,
+            num_boost_round=500,
+            evals=[(dvalid, "valid")],
+            early_stopping_rounds=50,
+        )
+
+        # Save model to MLflow
+        mlflow.xgboost.log_model(model, artifact_path="model")
+
+    # Save model locally
+    output_path = models_dir / "model.ubj"
+    model.save_model(output_path)
+
+    print(f"Model saved to {output_path}")
 
 
 if __name__ == "__main__":
