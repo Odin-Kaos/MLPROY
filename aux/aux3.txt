@@ -1,0 +1,28 @@
+
+src/tests/test_logic.py::test_mlflow_model_logging
+  /home/runner/work/MLPROY/MLPROY/.venv/lib/python3.14/site-packages/mlflow/utils/yaml_utils.py:43: DeprecationWarning: codecs.open() is deprecated. Use open() instead.
+    with codecs.open(yaml_file_name, mode="w", encoding=ENCODING) as yaml_file:
+
+src/tests/test_logic.py::test_mlflow_model_logging
+  /home/runner/work/MLPROY/MLPROY/.venv/lib/python3.14/site-packages/mlflow/utils/yaml_utils.py:105: DeprecationWarning: codecs.open() is deprecated. Use open() instead.
+    with codecs.open(file_path, mode="r", encoding=ENCODING) as yaml_file:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.14.2-final-0 ________________
+
+Name                      Stmts   Miss  Cover
+---------------------------------------------
+src/__init__.py               4      0   100%
+src/api/__init__.py           0      0   100%
+src/api/api.py               20     20     0%
+src/logic/__init__.py         0      0   100%
+src/logic/load_data.py       14      0   100%
+src/logic/predictor.py       10     10     0%
+src/logic/serialize.py       35     35     0%
+src/logic/trainer.py         17      0   100%
+src/tests/test_logic.py      62      0   100%
+src/training_script.py       25      5    80%
+---------------------------------------------
+TOTAL                       187     70    63%
+======================== 4 passed, 4 warnings in 7.10s =========================

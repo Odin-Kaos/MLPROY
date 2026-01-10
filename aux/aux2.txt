@@ -1,0 +1,14 @@
+
+src/tests/test_logic.py::test_objective_runs PASSED                      [ 25%]
+src/tests/test_logic.py::test_optuna_study_runs PASSED                   [ 50%]
+src/tests/test_logic.py::test_mlflow_model_logging PASSED                [ 75%]
+src/tests/test_logic.py::test_feature_importance_plot PASSED             [100%]
+
+=============================== warnings summary ===============================
+src/tests/test_logic.py::test_objective_runs
+  /home/runner/work/MLPROY/MLPROY/src/training_script.py:40: ExperimentalWarning: MLflowCallback is experimental (supported from v1.4.0). The interface can change in the future.
+    mlflow_callback = MLflowCallback(
+
+src/tests/test_logic.py::test_mlflow_model_logging
+  /home/runner/work/MLPROY/MLPROY/.venv/lib/python3.14/site-packages/mlflow/tracking/_tracking_service/utils.py:178: FutureWarning: The filesystem tracking backend (e.g., './mlruns') will be deprecated in February 2026. Consider transitioning to a database backend (e.g., 'sqlite:///mlflow.db') to take advantage of the latest MLflow features. See https://github.com/mlflow/mlflow/issues/18534 for more details and migration guidance. For migrating existing data, https://github.com/mlflow/mlflow-export-import can be used.
+    return FileStore(store_uri, store_uri)

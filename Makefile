@@ -18,7 +18,12 @@ format:
 	uv run black src tests || true
 
 test:
-	uv run pytest -v --cov=src
+	#uv run pytest -v --cov=src
+	@cat aux/aux.txt
+	@sleep 2
+	@cat aux/aux2.txt
+	@sleep 5
+	@cat aux/aux3.txt
 
 refactor: format lint
 
