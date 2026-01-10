@@ -8,6 +8,7 @@ import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
 from load_data import load_csv
+import os
 
 ROOT = Path(__file__).resolve().parents[2]
 tracking_dir = ROOT / "logs"
