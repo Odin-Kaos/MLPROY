@@ -1,7 +1,7 @@
 """
 Training logic for XGBoost + Optuna.
 """
-
+import os
 import mlflow
 import xgboost as xgb
 from sklearn.metrics import mean_squared_error
