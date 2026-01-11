@@ -5,7 +5,7 @@ FROM python:3.11-slim
 RUN pip install uv
 
 # Set working directory
-WORKDIR /app
+WORKDIR /app/src
 
 # Copy project files
 COPY pyproject.toml uv.lock ./
