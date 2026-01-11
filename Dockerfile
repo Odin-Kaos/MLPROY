@@ -11,6 +11,7 @@ WORKDIR /app
 COPY pyproject.toml uv.lock ./
 COPY src ./src
 COPY models ./models
+COPY templates ./templates
 
 # Install dependencies using uv
 RUN uv sync --frozen
