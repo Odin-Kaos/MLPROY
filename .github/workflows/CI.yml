@@ -55,22 +55,77 @@ jobs:
           make serialize
 
       # -----------------------------
-      # BUILD DOCKER IMAGE
+      # CLEAN MLflow directory
       # -----------------------------
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v2
+      - name: Cleanup MLflow directory
+        run: rm -rf ${{ env.MLFLOW_DIR }}
+
+  deploy:
+    # -----------------------------
+    # BUILD DOCKER IMAGE
+    # -----------------------------
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/img:latest
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive
 
-      - name: Build Docker image
-        run: |
-          docker build -t ghcr.io/${{ github.repository }}:latest .
+      - name: Check disk usage before Docker build
+        run: df -h
 
-      - name: Push Docker image
+      - name: Set up QEMU (for buildx)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ env.DOCKER_IMAGE }}
+          file: ./Dockerfile
+
+      - name: Check disk usage after Docker build
+        run: df -h
+
+      - name: Trigger Render Deploy
         run: |
-          docker push ghcr.io/${{ github.repository }}:latest
+          curl -X POST "https://api.render.com/deploy/srv-d4dijogdl3ps73e2or0g?key=${{ secrets.RENDER_DEPLOY_HOOK_KEY }}"
+
+  deploy-hf:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Switch to hf-space branch
+        run: |
+          git checkout hf-space
+
+      - name: Add HuggingFace remote
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_USERNAME: ${{ secrets.HF_USERNAME }}
+        run: |
+          git remote add huggingface https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/MLOps-Lab3.git
+
+      - name: Push hf-space to HuggingFace
+        run: git push huggingface hf-space:main --force
 
       # -----------------------------
       # DEPLOY (Render, Fly.io, etc.)
@@ -81,8 +136,4 @@ jobs:
           # Example: curl -X POST https://api.render.com/deploy...
           # Replace with your actual deployment command
 
-      # -----------------------------
-      # CLEAN MLflow directory
-      # -----------------------------
-      - name: Cleanup MLflow directory
-        run: rm -rf ${{ env.MLFLOW_DIR }}
+
