@@ -101,7 +101,7 @@ jobs:
 
       - name: Trigger Render Deploy
         run: |
-          curl -X POST "https://api.render.com/deploy/srv-d4dijogdl3ps73e2or0g?key=${{ secrets.RENDER_DEPLOY_HOOK_KEY }}"
+          curl -X POST "https://api.render.com/deploy/srv-d5hpd515pdvs73bk6kug?key=${{ secrets.RENDER_DEPLOY_HOOK_KEY }}"
 
   deploy-hf:
     runs-on: ubuntu-latest
