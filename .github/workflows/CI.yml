@@ -122,18 +122,8 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_USERNAME: ${{ secrets.HF_USERNAME }}
         run: |
-          git remote add huggingface https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/MLOps-Lab3.git
+          git remote add huggingface https://${HF_USERNAME}:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/Mlop.git
 
       - name: Push hf-space to HuggingFace
         run: git push huggingface hf-space:main --force
-
-      # -----------------------------
-      # DEPLOY (Render, Fly.io, etc.)
-      # -----------------------------
-      - name: Deploy service
-        run: |
-          echo "Deploying service..."
-          # Example: curl -X POST https://api.render.com/deploy...
-          # Replace with your actual deployment command
-
 
