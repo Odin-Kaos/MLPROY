@@ -9,8 +9,8 @@ WORKDIR /app
 
 # Copy project files
 COPY pyproject.toml uv.lock ./
-COPY src ./
-COPY models ./
+COPY src ./src
+COPY models ./models
 
 # Install dependencies using uv
 RUN uv sync --frozen

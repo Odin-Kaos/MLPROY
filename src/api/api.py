@@ -7,7 +7,7 @@ import numpy as np
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from logic.predictor import predict_class
+from src.logic.predictor import predict_class
 
 app = FastAPI()
 
