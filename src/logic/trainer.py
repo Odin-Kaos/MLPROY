@@ -3,7 +3,8 @@ from optuna.integration import MLflowCallback
 import mlflow
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, accuracy_score
+import numpy as np
 import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
@@ -79,6 +80,35 @@ with mlflow.start_run(run_name="best_model"):
     mlflow.xgboost.log_model(best_model, artifact_path="model")
 
 best_model.save_model(ROOT/"models"/"model.ubj")
+
+# --- Predictions ---
+y_pred_train = best_model.predict(dtrain)
+y_pred_val = best_model.predict(dvalid)
+y_pred_test = best_model.predict(dtest)
+
+# --- RMSE ---
+rmse_train = mean_squared_error(y_train, y_pred_train) ** 0.5
+rmse_val = mean_squared_error(y_val, y_pred_val) ** 0.5
+rmse_test = mean_squared_error(y_test, y_pred_test) ** 0.5
+
+print(f"Train RMSE: {rmse_train:.4f}")
+print(f"Val RMSE:   {rmse_val:.4f}")
+print(f"Test RMSE:  {rmse_test:.4f}")
+
+# --- Accuracy (only if labels are integers / classification-like) ---
+# Convert regression outputs to nearest class
+y_pred_train_cls = np.rint(y_pred_train)
+y_pred_val_cls = np.rint(y_pred_val)
+y_pred_test_cls = np.rint(y_pred_test)
+
+acc_train = accuracy_score(y_train, y_pred_train_cls)
+acc_val = accuracy_score(y_val, y_pred_val_cls)
+acc_test = accuracy_score(y_test, y_pred_test_cls)
+
+print(f"Train Accuracy: {acc_train:.4f}")
+print(f"Val Accuracy:   {acc_val:.4f}")
+print(f"Test Accuracy:  {acc_test:.4f}")
+
 
 fig, ax = plt.subplots(figsize=(8, 6))
 xgb.plot_importance(best_model, ax=ax)

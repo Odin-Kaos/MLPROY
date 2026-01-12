@@ -8,7 +8,8 @@ from pathlib import Path
 import mlflow
 import xgboost as xgb
 from load_data import load_csv
-
+from sklearn.metrics import mean_squared_error, accuracy_score
+import numpy as np
 
 # -----------------------------
 # Paths and MLflow setup
@@ -29,7 +30,7 @@ X_train, y_train, X_val, y_val, X_test, y_test = load_csv()
 
 dtrain = xgb.DMatrix(X_train, label=y_train)
 dvalid = xgb.DMatrix(X_val, label=y_val)
-
+dtest = xgb.DMatrix(X_test, label=y_test)
 
 # -----------------------------
 # Helper: find best run
@@ -92,6 +93,34 @@ def main():
 
         # Save model to MLflow
         mlflow.xgboost.log_model(model, artifact_path="model")
+
+    # --- Predictions ---
+    y_pred_train = model.predict(dtrain)
+    y_pred_val = model.predict(dvalid)
+    y_pred_test = model.predict(dtest)
+
+    # --- RMSE ---
+    rmse_train = mean_squared_error(y_train, y_pred_train) ** 0.5
+    rmse_val = mean_squared_error(y_val, y_pred_val) ** 0.5
+    rmse_test = mean_squared_error(y_test, y_pred_test) ** 0.5
+
+    print(f"Train RMSE: {rmse_train:.4f}")
+    print(f"Val RMSE:   {rmse_val:.4f}")
+    print(f"Test RMSE:  {rmse_test:.4f}")
+
+    # --- Accuracy (only if labels are integers / classification-like) ---
+    # Convert regression outputs to nearest class
+    y_pred_train_cls = np.rint(y_pred_train)
+    y_pred_val_cls = np.rint(y_pred_val)
+    y_pred_test_cls = np.rint(y_pred_test)
+
+    acc_train = accuracy_score(y_train, y_pred_train_cls)
+    acc_val = accuracy_score(y_val, y_pred_val_cls)
+    acc_test = accuracy_score(y_test, y_pred_test_cls)
+
+    print(f"Train Accuracy: {acc_train:.4f}")
+    print(f"Val Accuracy:   {acc_val:.4f}")
+    print(f"Test Accuracy:  {acc_test:.4f}")
 
     # Save model locally
     output_path = models_dir / "model.ubj"
