@@ -150,7 +150,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy-prometheus
     env:
-      DOCKER_IMAGE_GRAFANA: yourdockerhub/grafana:latest
+      DOCKER_IMAGE_GRAFANA: ${{ secrets.DOCKERHUB_USERNAME }}/grafana:latest
     steps:
       - name: Checkout repository (with submodules)
         uses: actions/checkout@v4
