@@ -60,7 +60,7 @@ jobs:
       - name: Cleanup MLflow directory
         run: rm -rf ${{ env.MLFLOW_DIR }}
 
-  deploy-docker:
+  deploy:
     # -----------------------------
     # BUILD DOCKER IMAGE
     # -----------------------------
